@@ -1,4 +1,4 @@
-#include <philosophers.h>
+#include "philosophers.h"
 
 void	philo_one_take_forks(t_philo *philo)
 {
@@ -19,9 +19,13 @@ void	philo_one_put_forks(t_philo *philo)
 void	philo_one_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->eat);
+	philo->is_eating = 1;
 	philo->last_meal = get_time();
+	philo->dead_time = philo->last_meal + philo->global->time_to_die;
 	print_log(philo, MSG_EATING);
 	usleep(philo->global->time_to_eat * 1000);
 	philo->eat_amount++;
+	philo->is_eating = 0;
 	pthread_mutex_unlock(&philo->eat);
+	pthread_mutex_unlock(&philo->life);
 }

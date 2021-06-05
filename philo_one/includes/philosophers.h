@@ -32,9 +32,9 @@ typedef struct s_global
 typedef struct s_philo
 {
 	t_global	*global;
-	pthread_t	thread;
 	t_mutex		eat;
 	t_mutex		life;
+	int			is_eating;
 	int			index;
 	int			left_fork;
 	int			right_fork;
@@ -58,8 +58,9 @@ void		philo_one_put_forks(t_philo *philo);
 void		philo_one_take_forks(t_philo *philo);
 
 void		*philo_one_routine(void *arg);
-void		*philo_one_observer(void *arg);
 int			philo_one_launch(t_all all);
+void		*philo_one_observer(void *arg);
+void		*philo_one_counter(void *arg);
 
 void		print_log(t_philo *philo, int type);
 void		*print_error(char *str);
