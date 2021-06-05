@@ -32,8 +32,9 @@ t_philo	*init_philos(t_global *global)
 		ret[i].right_fork = (i + 1) % global->amount;
 		ret[i].eat_amount = 0;
 		ret[i].global = global;
-		pthread_mutex_init(&ret[i].eat, 0);
+		ret[i].is_eating = 0;
 		pthread_mutex_init(&ret[i].life, 0);
+		pthread_mutex_init(&ret[i].eat, 0);
 		pthread_mutex_lock(&ret[i].eat);
 		i++;
 	}

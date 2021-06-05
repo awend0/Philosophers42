@@ -4,6 +4,7 @@ SRC		=	main.c \
 			thread.c \
 			lifespan.c \
 			utils.c \
+			print.c \
 
 DIR_INC	= includes/
 DIR_SRC = srcs/

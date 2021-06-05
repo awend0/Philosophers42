@@ -12,28 +12,31 @@ int	get_time(void)
 
 void	*print_error(char *err)
 {
-	printf("Error: %s\n", err);
+	ft_putstr("Error: ");
+	ft_putstr(err);
+	ft_putchar('\n');
 	return (0);
 }
 
 void	print_log(t_philo *philo, int type)
 {
-	int		time_stamp;
+	int			time_stamp;
+	static int	final_msg;
 
 	pthread_mutex_lock(&philo->global->print);
-	time_stamp = get_time() - philo->global->started_time;
-	if (type == MSG_DIED)
-		printf("%d\t%d died\n", time_stamp, philo->index + 1);
-	else if (type == MSG_EATING)
-		printf("%d\t%d is eating\n", time_stamp, philo->index + 1);
-	else if (type == MSG_SLEEPING)
-		printf("%d\t%d is sleeping\n", time_stamp, philo->index + 1);
-	else if (type == MSG_THINKING)
-		printf("%d\t%d is thinking\n", time_stamp, philo->index + 1);
-	else if (type == MSG_FORK)
-		printf("%d\t%d has taken a fork\n", time_stamp, philo->index + 1);
-	else if (type == MSG_LIMIT)
-		printf("%d\t%d must eat count reached\n", time_stamp, philo->index + 1);
+	if (!final_msg)
+	{
+		time_stamp = get_time() - philo->global->started_time;
+		ft_putnbr(time_stamp);
+		if (type != MSG_LIMIT)
+		{
+			ft_putchar(' ');
+			ft_putnbr(philo->index + 1);
+		}
+		ft_putstr(get_msg(type));
+		if (type == MSG_DIED || type == MSG_LIMIT)
+			final_msg = 1;
+	}
 	pthread_mutex_unlock(&philo->global->print);
 }
 

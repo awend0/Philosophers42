@@ -67,4 +67,10 @@ void		*print_error(char *str);
 int			ft_atoi(char *str);
 int			ft_isspace(int c);
 int 		get_time(void);
+
+char		*get_msg(int type);
+void		ft_putnbr(int n);
+int			ft_putstr(char *str);
+int			ft_putchar(char c);
+int			ft_strlen(char *str);
 #endif
