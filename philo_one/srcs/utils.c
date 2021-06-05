@@ -21,11 +21,13 @@ void	*print_error(char *err)
 void	print_log(t_philo *philo, int type)
 {
 	int			time_stamp;
-	static int	final_msg;
+	static int	last = 0;
 
-	pthread_mutex_lock(&philo->global->print);
-	if (!final_msg)
+	if (last == 0)
 	{
+		pthread_mutex_lock(&philo->global->print);
+		ft_putnbr(last);
+		ft_putchar(' ');
 		time_stamp = get_time() - philo->global->started_time;
 		ft_putnbr(time_stamp);
 		if (type != MSG_LIMIT)
@@ -33,11 +35,11 @@ void	print_log(t_philo *philo, int type)
 			ft_putchar(' ');
 			ft_putnbr(philo->index + 1);
 		}
+		if (type == MSG_LIMIT || type == MSG_DIED)
+			last = 1;
 		ft_putstr(get_msg(type));
-		if (type == MSG_DIED || type == MSG_LIMIT)
-			final_msg = 1;
+		pthread_mutex_unlock(&philo->global->print);
 	}
-	pthread_mutex_unlock(&philo->global->print);
 }
 
 int	ft_isspace(int c)

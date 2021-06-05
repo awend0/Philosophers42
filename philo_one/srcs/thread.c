@@ -9,7 +9,8 @@ int	philo_one_launch(t_all all)
 	all.global->started_time = get_time();
 	if (all.global->eat_amount)
 	{
-		if (pthread_create(&tmp, NULL, philo_one_counter, &all) || pthread_detach(tmp))
+		if (pthread_create(&tmp, NULL, philo_one_counter, &all)
+			|| pthread_detach(tmp))
 			return (1);
 	}
 	while (i < all.global->amount)
@@ -61,9 +62,10 @@ void	*philo_one_observer(void *arg)
 			print_log(philo, MSG_DIED);
 			pthread_mutex_unlock(&philo->life);
 			pthread_mutex_unlock(&philo->global->dead);
+			return ((void *)0);
 		}
 		pthread_mutex_unlock(&philo->life);
-		usleep(100);
+		usleep(1000);
 	}
 }
 

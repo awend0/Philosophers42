@@ -8,15 +8,15 @@ int	philo_one_free(t_all all, int ret)
 	while (i < all.global->amount)
 	{
 		pthread_mutex_destroy(&all.global->forks[i]);
-		pthread_mutex_destroy(&all.philos->eat);
-		pthread_mutex_destroy(&all.philos->life);
+		pthread_mutex_destroy(&all.philos[i].life);
+		pthread_mutex_destroy(&all.philos[i].eat);
 		i++;
 	}
 	pthread_mutex_destroy(&all.global->print);
 	pthread_mutex_destroy(&all.global->dead);
-	free(all.global->forks);
-	free(all.philos);
-	free(all.global);
+	free (all.philos);
+	free (all.global->forks);
+	free (all.global);
 	return (ret);
 }
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 
 	all.global = init_global(argc, argv);
 	if (!all.global)
-		return (1);	
+		return (1);
 	all.philos = init_philos(all.global);
 	if (!all.philos)
 		return (1);

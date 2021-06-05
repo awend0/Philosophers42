@@ -12,9 +12,7 @@ char	*get_msg(int type)
 		return (" is sleeping\n");
 	else if (type == MSG_THINKING)
 		return (" is thinking\n");
-	else if (type == MSG_LIMIT)
-		return (" eat count limit reached\n");
-	return (" wtf?\n");
+	return (" they ate enough...\n");
 }
 
 int	ft_strlen(char *str)
