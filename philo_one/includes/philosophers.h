@@ -7,6 +7,11 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <errno.h>
+# define MSG_FORK 1
+# define MSG_EAT 2
+# define MSG_SLEEP 3
+# define MSG_THINK 4
+# define MSG_DEAD 5
 
 typedef pthread_mutex_t t_mutex;
 
@@ -31,11 +36,19 @@ typedef struct s_philo
 	int			eat_amount;
 	int			last_eat;
 	int			t_wdead;
-	t_mutex		m_life;
+	t_mutex		m_eat;
 	t_params	*params;
 }			t_philo;	
 
 int		init_all(t_philo **tmp, int argc, char *argv[]);
+
+void	*routine_philo(void *arg);
+
+void	lifespan_take_forks(t_philo *philo);
+void	lifespan_put_forks(t_philo *philo);
+void	lifespan_eat(t_philo *philo);
+
+void	print_log(t_philo *philo, int type);
 int		print_error(char *str);
 int		ft_atoi(char *str);
 int 	get_time(void);

@@ -71,8 +71,7 @@ static int	init_philos(t_philo **tmp, t_params *params)
 		ret[i].last_eat = 0;
 		ret[i].params = params;
 		pthread_mutex_init(&params->m_forks[i], 0);
-		pthread_mutex_init(&ret[i].m_life, 0);
-		pthread_mutex_lock(&ret[i].m_life);
+		pthread_mutex_init(&ret[i].m_eat, 0);
 		i++;
 	}
 	*tmp = ret;

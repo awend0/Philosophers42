@@ -1,5 +1,32 @@
 #include "../includes/philosophers.h"
 
+static char	*get_msg(int type)
+{
+	if (type == MSG_FORK)
+		return ("has taken a fork\n");
+	else if (type == MSG_EAT)
+		return ("is eating\n");
+	else if (type == MSG_SLEEP)
+		return ("is sleeping\n");
+	else if (type == MSG_THINK)
+		return ("is thinking\n");
+	return ("died\n");
+}
+
+void	print_log(t_philo *philo, int type)
+{
+	int		time_stamp;
+
+	pthread_mutex_lock(&philo->params->m_print);
+	time_stamp = get_time() - philo->params->t_started;
+	ft_putnbr(time_stamp);
+	ft_putchar(' ');
+	ft_putnbr(philo->index + 1);
+	ft_putchar(' ');
+	ft_putstr(get_msg(type));
+	pthread_mutex_unlock(&philo->params->m_print);
+}
+
 int	print_error(char *str)
 {
 	ft_putstr("Error: ");
