@@ -22,6 +22,8 @@ void	lifespan_eat(t_philo *philo)
 	philo->last_eat = get_time();
 	philo->t_wdead = philo->last_eat + philo->params->t_die;
 	philo->eat_amount++;
+	if (philo->eat_amount >= philo->params->eat_limit)
+		philo->params->fed_amount++;
 	print_log(philo, MSG_EAT);
 	usleep(philo->params->t_eat * 1000);
 	pthread_mutex_unlock(&philo->m_eat);

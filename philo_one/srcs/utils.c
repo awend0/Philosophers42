@@ -10,7 +10,9 @@ static char	*get_msg(int type)
 		return ("is sleeping\n");
 	else if (type == MSG_THINK)
 		return ("is thinking\n");
-	return ("died\n");
+	else if (type == MSG_DEAD)
+		return ("died\n");
+	return ("they ate enough\n");
 }
 
 void	print_log(t_philo *philo, int type)
@@ -18,12 +20,20 @@ void	print_log(t_philo *philo, int type)
 	int		time_stamp;
 
 	pthread_mutex_lock(&philo->params->m_print);
-	time_stamp = get_time() - philo->params->t_started;
-	ft_putnbr(time_stamp);
-	ft_putchar(' ');
-	ft_putnbr(philo->index + 1);
-	ft_putchar(' ');
-	ft_putstr(get_msg(type));
+	if (!philo->params->last_msg)
+	{
+		time_stamp = get_time() - philo->params->t_started;
+		ft_putnbr(time_stamp);
+		ft_putchar(' ');
+		if (type != MSG_LIMIT)
+		{
+			ft_putnbr(philo->index + 1);
+			ft_putchar(' ');
+		}
+		ft_putstr(get_msg(type));
+		if (type == MSG_DEAD || type == MSG_LIMIT)
+			philo->params->last_msg = 1;
+	}
 	pthread_mutex_unlock(&philo->params->m_print);
 }
 

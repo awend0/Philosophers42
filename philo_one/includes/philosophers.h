@@ -12,7 +12,7 @@
 # define MSG_SLEEP 3
 # define MSG_THINK 4
 # define MSG_DEAD 5
-
+# define MSG_LIMIT 6
 typedef pthread_mutex_t t_mutex;
 
 typedef struct s_params
@@ -23,6 +23,8 @@ typedef struct s_params
 	int		t_die;
 	int		t_started;
 	int		eat_limit;
+	int		fed_amount;
+	int		last_msg;
 	t_mutex	m_stop;
 	t_mutex	m_print;	
 	t_mutex	*m_forks;
@@ -33,10 +35,11 @@ typedef struct s_philo
 	int			index;
 	int			left_fork;
 	int			right_fork;
-	int			eat_amount;
 	int			last_eat;
 	int			t_wdead;
+	int			eat_amount;
 	t_mutex		m_eat;
+	t_mutex		m_count;
 	t_params	*params;
 }			t_philo;	
 

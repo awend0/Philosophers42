@@ -24,6 +24,8 @@ static int	init_params_fill(t_params **tmp, int argc, char *argv[])
 		ret->eat_limit = ft_atoi(argv[5]);
 	if (ret->eat_limit < 0)
 		return (print_error("Wrong eat limit"));
+	ret->fed_amount = 0;
+	ret->last_msg = 0;
 	return (0);
 }
 
@@ -66,12 +68,13 @@ static int	init_philos(t_philo **tmp, t_params *params)
 		ret[i].index = i;
 		ret[i].left_fork = i;
 		ret[i].right_fork = (i + 1) % params->amount;
-		ret[i].eat_amount = 0;
 		ret[i].t_wdead = 0;
 		ret[i].last_eat = 0;
 		ret[i].params = params;
+		ret[i].eat_amount = 0;
 		pthread_mutex_init(&params->m_forks[i], 0);
 		pthread_mutex_init(&ret[i].m_eat, 0);
+		pthread_mutex_init(&ret[i].m_count, 0);
 		i++;
 	}
 	*tmp = ret;
