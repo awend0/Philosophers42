@@ -2,8 +2,6 @@
 
 int	print_error(char *str)
 {
-	char	*buf;
-
 	ft_putstr("Error: ");
 	ft_putstr(str);
 	ft_putchar('\n');
