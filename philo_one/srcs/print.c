@@ -1,5 +1,15 @@
 #include "../includes/philosophers.h"
 
+int	print_error(char *str)
+{
+	char	*buf;
+
+	ft_putstr("Error: ");
+	ft_putstr(str);
+	ft_putchar('\n');
+	return (1);
+}
+
 int	ft_strlen(char *str)
 {
 	int	ret;

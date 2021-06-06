@@ -37,12 +37,20 @@ void	print_log(t_philo *philo, int type)
 	pthread_mutex_unlock(&philo->params->m_print);
 }
 
-int	print_error(char *str)
+void	ft_usleep(int n)
 {
-	ft_putstr("Error: ");
-	ft_putstr(str);
-	ft_putchar('\n');
-	return (1);
+	struct timeval	start;
+	struct timeval	step;
+
+	gettimeofday(&start, NULL);
+	while (1)
+	{
+		usleep(50);
+		gettimeofday(&step, NULL);
+		if (((step.tv_sec - start.tv_sec) * 1000000
+				+ (step.tv_usec - start.tv_usec)) > n)
+			break ;
+	}
 }
 
 int	get_time(void)

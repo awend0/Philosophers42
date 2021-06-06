@@ -13,7 +13,7 @@ void	lifespan_put_forks(t_philo *philo)
 	pthread_mutex_unlock(&philo->params->m_forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->params->m_forks[philo->right_fork]);
 	print_log(philo, MSG_SLEEP);
-	usleep(philo->params->t_sleep * 1000);
+	ft_usleep(philo->params->t_sleep * 1000);
 }
 
 void	lifespan_eat(t_philo *philo)
@@ -25,6 +25,6 @@ void	lifespan_eat(t_philo *philo)
 	if (philo->eat_amount >= philo->params->eat_limit)
 		philo->params->fed_amount++;
 	print_log(philo, MSG_EAT);
-	usleep(philo->params->t_eat * 1000);
+	ft_usleep(philo->params->t_eat * 1000);
 	pthread_mutex_unlock(&philo->m_eat);
 }
