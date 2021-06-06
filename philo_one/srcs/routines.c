@@ -24,6 +24,7 @@ void	*routine_observer(void *arg)
 			return ((void *)0);
 		}
 		pthread_mutex_unlock(&philo->m_eat);
+		ft_usleep(1000);
 	}
 }
 
@@ -40,6 +41,8 @@ void	*routine_philo(void *arg)
 	philo->t_wdead = philo->last_eat + philo->params->t_die;
 	while (1)
 	{
+		if (philo->params->last_msg)
+			break ;
 		lifespan_take_forks(philo);
 		lifespan_eat(philo);
 		lifespan_put_forks(philo);

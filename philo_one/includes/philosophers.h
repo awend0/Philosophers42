@@ -13,7 +13,8 @@
 # define MSG_THINK 4
 # define MSG_DEAD 5
 # define MSG_LIMIT 6
-typedef pthread_mutex_t t_mutex;
+
+typedef pthread_mutex_t	t_mutex;
 
 typedef struct s_params
 {
@@ -39,7 +40,6 @@ typedef struct s_philo
 	int			t_wdead;
 	int			eat_amount;
 	t_mutex		m_eat;
-	t_mutex		m_count;
 	t_params	*params;
 }			t_philo;	
 
@@ -55,7 +55,7 @@ void	ft_usleep(int usec);
 void	print_log(t_philo *philo, int type);
 int		print_error(char *str);
 int		ft_atoi(char *str);
-int 	get_time(void);
+int		get_time(void);
 
 void	ft_putnbr(int n);
 int		ft_putstr(char *str);

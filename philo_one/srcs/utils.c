@@ -45,7 +45,7 @@ void	ft_usleep(int n)
 	gettimeofday(&start, NULL);
 	while (1)
 	{
-		usleep(50);
+		usleep(10);
 		gettimeofday(&step, NULL);
 		if (((step.tv_sec - start.tv_sec) * 1000000
 				+ (step.tv_usec - start.tv_usec)) > n)
