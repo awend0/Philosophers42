@@ -1,13 +1,11 @@
 #include "../includes/philosophers.h"
 
-char	*get_sem_name(int index)
+sem_t	*sem_create(char *name, int value)
 {
-	char	*nbr;
-	char	*ret;
+	sem_t	*ret;
 
-	nbr = ft_itoa(index);
-	ret = ft_strjoin("S_EAT", nbr);
-	free (nbr);
+	sem_unlink(name);
+	ret = sem_open(name, O_CREAT | O_EXCL, 0644, value);
 	return (ret);
 }
 

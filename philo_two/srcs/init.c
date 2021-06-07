@@ -1,5 +1,16 @@
 #include "../includes/philosophers.h"
 
+static char	*get_sem_name(int index)
+{
+	char	*nbr;
+	char	*ret;
+
+	nbr = ft_itoa(index);
+	ret = ft_strjoin("S_EAT", nbr);
+	free (nbr);
+	return (ret);
+}
+
 static int	init_params_fill(t_params **tmp, int argc, char *argv[])
 {
 	t_params	*ret;
@@ -41,9 +52,9 @@ static int	init_params(t_params **tmp, int argc, char *argv[])
 		free (ret);
 		return (1);
 	}
-	ret->s_print = sem_open(SEM_PRINT, O_CREAT | O_EXCL, 0644, 1);
-	ret->s_forks = sem_open(SEM_FORKS, O_CREAT | O_EXCL, 0644, ret->amount);
-	ret->s_stop = sem_open(SEM_STOP, O_CREAT | O_EXCL, 0644, 0);
+	ret->s_print = sem_create(SEM_PRINT, 1);
+	ret->s_forks = sem_create(SEM_FORKS, ret->amount);
+	ret->s_stop = sem_create(SEM_STOP, 0);
 	*tmp = ret;
 	return (0);
 }
@@ -65,7 +76,7 @@ static int	init_philos(t_philo **tmp, t_params *params)
 		ret[i].params = params;
 		ret[i].eat_amount = 0;
 		ret[i].s_eat_name = get_sem_name(i);
-		ret[i].s_eat = sem_open(ret[i].s_eat_name, O_CREAT | O_EXCL, 0644, 1);
+		ret[i].s_eat = sem_create(ret[i].s_eat_name, 1);
 		i++;
 	}
 	*tmp = ret;

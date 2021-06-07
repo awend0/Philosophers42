@@ -45,6 +45,7 @@ typedef struct s_philo
 }			t_philo;	
 
 int		init_all(t_philo **tmp, int argc, char *argv[]);
+sem_t	*sem_create(char *name, int value);;
 
 void	*routine_philo(void *arg);
 
@@ -63,7 +64,6 @@ int		ft_putstr(char *str);
 int		ft_putchar(char c);
 int		ft_strlen(char *str);
 
-char	*get_sem_name(int index);
 char	*ft_itoa(int nb);
 char	*ft_strcpy(char *dst, char *src);
 void	*ft_memcpy(void *dst, void *src, int n);
