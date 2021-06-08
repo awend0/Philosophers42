@@ -21,16 +21,14 @@ static void	free_all(t_philo *philos)
 
 static int	launch_philo(t_philo *philos, int cmp)
 {
-	int			i;
 	pthread_t	tmp;
 
-	i = cmp;
-	while (i < philos->params->amount)
+	while (cmp < philos->params->amount)
 	{
-		if (pthread_create(&tmp, 0, &routine_philo, &philos[i])
+		if (pthread_create(&tmp, 0, &routine_philo, &philos[cmp])
 			|| pthread_detach(tmp))
 			return (print_error(strerror(errno)));
-		i += 2;
+		cmp += 2;
 	}
 	return (0);
 }
