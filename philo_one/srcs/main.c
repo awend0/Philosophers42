@@ -19,21 +19,27 @@ static void	free_all(t_philo *philos)
 	free (philos);
 }
 
-static int	launch_all(t_philo *philos)
+static int	launch_philo(t_philo *philos, int cmp)
 {
 	int			i;
 	pthread_t	tmp;
 
-	philos->params->t_started = get_time();
-	i = 0;
+	i = cmp;
 	while (i < philos->params->amount)
 	{
 		if (pthread_create(&tmp, 0, &routine_philo, &philos[i])
 			|| pthread_detach(tmp))
 			return (print_error(strerror(errno)));
-		ft_usleep(100);
-		i++;
+		i += 2;
 	}
+	return (0);
+}
+
+static int	launch_all(t_philo *philos)
+{
+	philos->params->t_started = get_time();
+	if (launch_philo(philos, 0) || launch_philo(philos, 1))
+		return (1);
 	return (0);
 }
 
