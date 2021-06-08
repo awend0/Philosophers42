@@ -9,7 +9,7 @@ void	*routine_observer(void *arg)
 	{
 		pthread_mutex_lock(&philo->m_eat);
 		if (philo->params->eat_limit > 0
-			&& philo->params->fed_amount == philo->params->amount)
+			&& philo->params->fed_amount >= philo->params->amount)
 		{
 			print_log(philo, MSG_LIMIT);
 			pthread_mutex_unlock(&philo->m_eat);

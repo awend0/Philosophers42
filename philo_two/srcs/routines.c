@@ -9,7 +9,7 @@ void	*routine_observer(void *arg)
 	{
 		sem_wait(philo->s_eat);
 		if (philo->params->eat_limit > 0
-			&& philo->params->fed_amount == philo->params->amount)
+			&& philo->params->fed_amount >= philo->params->amount)
 		{
 			print_log(philo, MSG_LIMIT);
 			sem_post(philo->s_eat);
