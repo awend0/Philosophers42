@@ -17,12 +17,16 @@ static void	free_all(t_philo *philos)
 	i = 0;
 	while (i < philos->params->amount)
 	{
+		sem_close(philos[i].s_eat);
 		sem_unlink(philos[i].s_eat_name);
 		free (philos[i].s_eat_name);
 		i++;
 	}
+	sem_close(philos->params->s_forks);
 	sem_unlink(SEM_FORKS);
+	sem_close(philos->params->s_print);
 	sem_unlink(SEM_PRINT);
+	sem_close(philos->params->s_stop);
 	sem_unlink(SEM_STOP);
 	free (philos->params);
 	free (philos);

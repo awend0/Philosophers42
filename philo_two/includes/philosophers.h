@@ -47,6 +47,7 @@ typedef struct s_philo
 int		init_all(t_philo **tmp, int argc, char *argv[]);
 sem_t	*sem_create(char *name, int value);
 
+void	*routine_observer(void *arg);
 void	*routine_philo(void *arg);
 
 void	lifespan_take_forks(t_philo *philo);
