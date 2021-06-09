@@ -3,36 +3,35 @@
 static char	*get_msg(int type)
 {
 	if (type == MSG_FORK)
-		return ("has taken a fork\n");
+		return (" has taken a fork\n");
 	else if (type == MSG_EAT)
-		return ("is eating\n");
+		return (" is eating\n");
 	else if (type == MSG_SLEEP)
-		return ("is sleeping\n");
+		return (" is sleeping\n");
 	else if (type == MSG_THINK)
-		return ("is thinking\n");
+		return (" is thinking\n");
 	else if (type == MSG_DEAD)
-		return ("died\n");
-	return ("they ate enough\n");
+		return (" died\n");
+	return (" they ate enough\n");
 }
 
 void	print_log(t_philo *philo, int type)
 {
 	int		time_stamp;
+	char	*buf;
 
 	sem_wait(philo->params->s_print);
 	if (!philo->params->last_msg)
-	{
+	{	
 		time_stamp = get_time() - philo->params->t_started;
-		ft_putnbr(time_stamp);
-		ft_putchar(' ');
+		buf = ft_strjoin(ft_itoa(time_stamp), " ");
 		if (type != MSG_LIMIT)
-		{
-			ft_putnbr(philo->index + 1);
-			ft_putchar(' ');
-		}
-		ft_putstr(get_msg(type));
+			buf = ft_strjoin(buf, ft_itoa(philo->index + 1));
+		buf = ft_strjoin(buf, get_msg(type));
 		if (type == MSG_DEAD || type == MSG_LIMIT)
 			philo->params->last_msg = 1;
+		ft_putstr(buf);
+		free (buf);
 	}
 	sem_post(philo->params->s_print);
 }

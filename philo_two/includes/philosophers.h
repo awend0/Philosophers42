@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <fcntl.h>
 # include <semaphore.h>
 # include <sys/time.h>
 # include <errno.h>
@@ -66,8 +67,6 @@ int		ft_putchar(char c);
 int		ft_strlen(char *str);
 
 char	*ft_itoa(int nb);
-char	*ft_strcpy(char *dst, char *src);
-void	*ft_memcpy(void *dst, void *src, int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(int size);
 #endif

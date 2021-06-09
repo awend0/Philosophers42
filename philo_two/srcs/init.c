@@ -44,7 +44,7 @@ static int	init_params(t_params **tmp, int argc, char *argv[])
 {
 	t_params	*ret;
 
-	ret = malloc(sizeof(t_params));
+	ret = ft_calloc(sizeof(t_params));
 	if (!ret)
 		return (print_error("Malloc error"));
 	if (init_params_fill(&ret, argc, argv))
@@ -64,7 +64,7 @@ static int	init_philos(t_philo **tmp, t_params *params)
 	t_philo	*ret;
 	int		i;
 
-	ret = malloc(sizeof(t_philo) * params->amount);
+	ret = ft_calloc(sizeof(t_philo) * params->amount);
 	if (!ret)
 		return (1);
 	i = 0;

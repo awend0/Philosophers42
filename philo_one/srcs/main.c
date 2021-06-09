@@ -36,7 +36,10 @@ static int	launch_philo(t_philo *philos, int cmp)
 static int	launch_all(t_philo *philos)
 {
 	philos->params->t_started = get_time();
-	if (launch_philo(philos, 0) || launch_philo(philos, 1))
+	if (launch_philo(philos, 0))
+		return (1);
+	ft_usleep(100);
+	if (launch_philo(philos, 1))
 		return (1);
 	return (0);
 }

@@ -57,8 +57,10 @@ int		print_error(char *str);
 int		ft_atoi(char *str);
 int		get_time(void);
 
-void	ft_putnbr(int n);
+void	*ft_calloc(int size);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_itoa(int n);
+
 int		ft_putstr(char *str);
-int		ft_putchar(char c);
 int		ft_strlen(char *str);
 #endif

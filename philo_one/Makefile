@@ -4,6 +4,7 @@ SRC		=	main.c \
 			routines.c \
 			lifespan.c \
 			utils.c \
+			utils2.c \
 			print.c \
 
 DIR_SRC = 	srcs/

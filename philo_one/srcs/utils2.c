@@ -32,6 +32,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (buf_strjoin);
 }
 
+int	ft_atoi(char *str)
+{
+	int	res;
+	int	negative;
+
+	negative = 1;
+	res = 0;
+	while (*str && (*str == '\t' || *str == '\n' || *str == '\v'
+			|| *str == '\f' || *str == '\r' || *str == ' '))
+		str++;
+	if (*str == '-')
+		negative = -1;
+	while (*str == '-' || *str == '+')
+		++str;
+	while (*str && *str >= '0' && *str <= '9')
+	{
+		res = res * 10 + (*str - 48);
+		++str;
+	}
+	return (res * negative);
+}
+
 static int	ft_nbrlen(int n)
 {
 	int		ret;

@@ -24,7 +24,6 @@ void	*routine_observer(void *arg)
 			return ((void *)0);
 		}
 		sem_post(philo->s_eat);
-		ft_usleep(1000);
 	}
 }
 
