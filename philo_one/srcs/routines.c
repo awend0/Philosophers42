@@ -24,6 +24,7 @@ void	*routine_observer(void *arg)
 			return ((void *)0);
 		}
 		pthread_mutex_unlock(&philo->m_eat);
+		ft_usleep(1000);
 	}
 }
 

@@ -4,6 +4,7 @@ static int	free_all(t_philo *philos)
 {
 	int		i;
 
+	philos->params->last_msg = 1;
 	ft_usleep((philos->params->t_die + philos->params->t_sleep) * 1500);
 	i = 0;
 	while (i < philos->params->amount)
