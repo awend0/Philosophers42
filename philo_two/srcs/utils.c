@@ -12,7 +12,7 @@ static char	*get_msg(int type)
 		return (" is thinking\n");
 	else if (type == MSG_DEAD)
 		return (" died\n");
-	return (" they ate enough\n");
+	return ("they ate enough\n");
 }
 
 void	print_log(t_philo *philo, int type)
@@ -24,10 +24,10 @@ void	print_log(t_philo *philo, int type)
 	if (!philo->params->last_msg)
 	{	
 		time_stamp = get_time() - philo->params->t_started;
-		buf = ft_strjoin(ft_itoa(time_stamp), " ");
+		buf = ft_strjoin(ft_itoa(time_stamp), " ", 1);
 		if (type != MSG_LIMIT)
-			buf = ft_strjoin(buf, ft_itoa(philo->index + 1));
-		buf = ft_strjoin(buf, get_msg(type));
+			buf = ft_strjoin(buf, ft_itoa(philo->index + 1), 1);
+		buf = ft_strjoin(buf, get_msg(type), 1);
 		if (type == MSG_DEAD || type == MSG_LIMIT)
 			philo->params->last_msg = 1;
 		ft_putstr(buf);

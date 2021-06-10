@@ -6,7 +6,7 @@ static char	*get_sem_name(int index)
 	char	*ret;
 
 	nbr = ft_itoa(index);
-	ret = ft_strjoin("S_EAT", nbr);
+	ret = ft_strjoin("S_EAT", nbr, 0);
 	free (nbr);
 	return (ret);
 }

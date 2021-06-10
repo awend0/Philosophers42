@@ -58,7 +58,7 @@ int		ft_atoi(char *str);
 int		get_time(void);
 
 void	*ft_calloc(int size);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char*s2);
 char	*ft_itoa(int n);
 
 int		ft_putstr(char *str);

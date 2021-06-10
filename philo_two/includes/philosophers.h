@@ -67,6 +67,6 @@ int		ft_putchar(char c);
 int		ft_strlen(char *str);
 
 char	*ft_itoa(int nb);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2, int free);
 void	*ft_calloc(int size);
 #endif
