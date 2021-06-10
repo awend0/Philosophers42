@@ -5,7 +5,7 @@ static int	free_all(t_philo *philos)
 	int		i;
 
 	philos->params->last_msg = 1;
-	ft_usleep((philos->params->t_die + philos->params->t_sleep) * 2000);
+	ft_usleep((philos->params->t_die + philos->params->t_sleep) * 1500);
 	i = 0;
 	while (i < philos->params->amount)
 	{
@@ -17,9 +17,7 @@ static int	free_all(t_philo *philos)
 	pthread_mutex_destroy(&philos->params->m_stop);
 	free (philos->params->m_forks);
 	free (philos->params);
-	philos->params = 0;
 	free (philos);
-	philos = 0;
 	return (1);
 }
 
@@ -31,7 +29,7 @@ static int	launch_philo(t_philo *philos, int cmp)
 	{
 		if (pthread_create(&tmp, 0, &routine_philo, &philos[cmp])
 			|| pthread_detach(tmp))
-			return (print_error(strerror(errno)));
+			return (print_error("pthread create/detach error\n"));
 		cmp += 2;
 	}
 	return (0);

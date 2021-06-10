@@ -53,17 +53,19 @@ void	print_log(t_philo *philo, int type)
 	char	*buf;
 
 	pthread_mutex_lock(&philo->params->m_print);
-	if (philo && philo->params && !philo->params->last_msg)
+	if (!philo->params->last_msg)
 	{	
 		time_stamp = get_time() - philo->params->t_started;
 		buf = ft_itoa(time_stamp);
 		ft_putstr(buf);
-		free (buf);
+		if (buf)
+			free (buf);
 		if (type != MSG_LIMIT)
 		{
 			buf = ft_itoa(philo->index + 1);
 			ft_putstr(buf);
-			free (buf);
+			if (buf)
+				free (buf);
 		}
 		ft_putstr(get_msg(type));
 		if (type == MSG_DEAD || type == MSG_LIMIT)

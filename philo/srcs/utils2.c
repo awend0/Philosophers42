@@ -37,6 +37,8 @@ int	ft_strlen(char *str)
 
 int	ft_putstr(char *str)
 {
+	if (!str)
+		return (0);
 	if (write(1, str, ft_strlen(str)) < 0)
 		return (1);
 	return (0);
@@ -70,6 +72,8 @@ char	*ft_itoa(int n)
 
 	nbrlen = ft_nbrlen(n);
 	buf = malloc(nbrlen + 2);
+	if (!buf)
+		return (0);
 	buf[nbrlen + 1] = 0;
 	buf[nbrlen] = ' ';
 	if (n == 0)
