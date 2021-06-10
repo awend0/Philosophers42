@@ -55,18 +55,13 @@ void	lifespan_take_forks(t_philo *philo);
 void	lifespan_put_forks(t_philo *philo);
 void	lifespan_eat(t_philo *philo);
 
-void	ft_usleep(int usec);
 void	print_log(t_philo *philo, int type);
-int		print_error(char *str);
-int		ft_atoi(char *str);
+int		print_error(char *msg);
 int		get_time(void);
+void	ft_usleep(int n);
 
-void	ft_putnbr(int n);
+char	*ft_itoa(int n);
 int		ft_putstr(char *str);
-int		ft_putchar(char c);
 int		ft_strlen(char *str);
-
-char	*ft_itoa(int nb);
-char	*ft_strjoin(char *s1, char *s2, int free);
-void	*ft_calloc(int size);
+int		ft_atoi(char *str);
 #endif

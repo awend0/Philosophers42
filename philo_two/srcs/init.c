@@ -4,9 +4,22 @@ static char	*get_sem_name(int index)
 {
 	char	*nbr;
 	char	*ret;
+	int		i;
 
 	nbr = ft_itoa(index);
-	ret = ft_strjoin("S_EAT", nbr, 0);
+	ret = malloc(ft_strlen(nbr) + 6);
+	i = 0;
+	while (i < ft_strlen(nbr))
+	{
+		ret[i] = nbr[i];
+		i++;
+	}
+	ret[i] = 'S';
+	ret[i + 1] = '_';
+	ret[i + 2] = 'E';
+	ret[i + 3] = 'A';
+	ret[i + 4] = 'T';
+	ret[i + 5] = 0;
 	free (nbr);
 	return (ret);
 }
@@ -44,7 +57,7 @@ static int	init_params(t_params **tmp, int argc, char *argv[])
 {
 	t_params	*ret;
 
-	ret = ft_calloc(sizeof(t_params));
+	ret = malloc(sizeof(t_params));
 	if (!ret)
 		return (print_error("Malloc error"));
 	if (init_params_fill(&ret, argc, argv))
@@ -64,7 +77,7 @@ static int	init_philos(t_philo **tmp, t_params *params)
 	t_philo	*ret;
 	int		i;
 
-	ret = ft_calloc(sizeof(t_philo) * params->amount);
+	ret = malloc(sizeof(t_philo) * params->amount);
 	if (!ret)
 		return (1);
 	i = 0;

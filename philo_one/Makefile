@@ -5,7 +5,6 @@ SRC		=	main.c \
 			lifespan.c \
 			utils.c \
 			utils2.c \
-			print.c \
 
 DIR_SRC = 	srcs/
 SRCS	= 	$(addprefix $(DIR_SRC), $(SRC))

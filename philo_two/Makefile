@@ -4,8 +4,7 @@ SRC		=	main.c \
 			routines.c \
 			lifespan.c \
 			utils.c \
-			utils2.c \
-			print.c \
+			utils2.c
 
 DIR_SRC = 	srcs/
 SRCS	= 	$(addprefix $(DIR_SRC), $(SRC))

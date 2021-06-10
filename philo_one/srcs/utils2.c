@@ -1,39 +1,5 @@
 #include "../includes/philosophers.h"
 
-void	*ft_calloc(int size)
-{
-	void	*ret;
-
-	ret = malloc(size);
-	memset(ret, 0, size);
-	return (ret);
-}
-
-char	*ft_strjoin(char *s1, char *s2, int _free)
-{
-	char	*strjoin;
-	char	*buf_strjoin;
-	int		s1_len;
-	int		s2_len;
-	char	*tmp;
-
-	tmp = s1;
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	strjoin = ft_calloc(s1_len + s2_len + 1);
-	if (!strjoin)
-		return (0);
-	buf_strjoin = strjoin;
-	while (*s1)
-		*strjoin++ = *s1++;
-	while (*s2)
-		*strjoin++ = *s2++;
-	*strjoin = '\0';
-	free (tmp);
-	
-	return (buf_strjoin);
-}
-
 int	ft_atoi(char *str)
 {
 	int	res;
@@ -56,6 +22,26 @@ int	ft_atoi(char *str)
 	return (res * negative);
 }
 
+int	ft_strlen(char *str)
+{
+	int	ret;
+
+	ret = 0;
+	while (*str)
+	{
+		ret++;
+		str++;
+	}
+	return (ret);
+}
+
+int	ft_putstr(char *str)
+{
+	if (write(1, str, ft_strlen(str)) < 0)
+		return (1);
+	return (0);
+}
+
 static int	ft_nbrlen(int n)
 {
 	int		ret;
@@ -71,7 +57,7 @@ static int	ft_nbrlen(int n)
 		ret++;
 		n /= 10;
 	}
-	return (ret); 
+	return (ret);
 }
 
 char	*ft_itoa(int n)
@@ -81,8 +67,9 @@ char	*ft_itoa(int n)
 	int		i;
 
 	nbrlen = ft_nbrlen(n);
-	buf = ft_calloc(nbrlen + 1);
-	buf[nbrlen] = 0;
+	buf = malloc(nbrlen + 2);
+	buf[nbrlen + 1] = 0;
+	buf[nbrlen] = ' ';
 	i = 1;
 	while (i <= nbrlen)
 	{
