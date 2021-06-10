@@ -47,6 +47,8 @@ static int	ft_nbrlen(int n)
 	int		ret;
 
 	ret = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
 		ret++;
@@ -70,6 +72,11 @@ char	*ft_itoa(int n)
 	buf = malloc(nbrlen + 2);
 	buf[nbrlen + 1] = 0;
 	buf[nbrlen] = ' ';
+	if (n == 0)
+	{
+		buf[0] = '0';
+		return (buf);
+	}
 	i = 1;
 	while (i <= nbrlen)
 	{
