@@ -5,23 +5,21 @@ static int	free_all(t_philo *philos)
 	int		i;
 
 	philos->params->last_msg = 1;
-	ft_usleep((philos->params->t_die + philos->params->t_sleep) * 1500);
+	ft_usleep((philos->params->t_die + philos->params->t_sleep) * 2000);
 	i = 0;
 	while (i < philos->params->amount)
 	{
-		pthread_mutex_unlock(&philos->params->m_forks[i]);
 		pthread_mutex_destroy(&philos->params->m_forks[i]);
-		pthread_mutex_unlock(&philos[i].m_eat);
 		pthread_mutex_destroy(&philos[i].m_eat);
 		i++;
 	}
-	pthread_mutex_unlock(&philos->params->m_print);
 	pthread_mutex_destroy(&philos->params->m_print);
-	pthread_mutex_unlock(&philos->params->m_stop);
 	pthread_mutex_destroy(&philos->params->m_stop);
 	free (philos->params->m_forks);
 	free (philos->params);
+	philos->params = 0;
 	free (philos);
+	philos = 0;
 	return (1);
 }
 

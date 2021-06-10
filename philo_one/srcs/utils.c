@@ -53,7 +53,7 @@ void	print_log(t_philo *philo, int type)
 	char	*buf;
 
 	pthread_mutex_lock(&philo->params->m_print);
-	if (!philo->params->last_msg)
+	if (philo && philo->params && !philo->params->last_msg)
 	{	
 		time_stamp = get_time() - philo->params->t_started;
 		buf = ft_itoa(time_stamp);
